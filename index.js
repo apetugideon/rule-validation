@@ -2,6 +2,8 @@ const http = require('http');
 const serverUrl = require('url');
 const { StringDecoder } = require('string_decoder');
 const routes = require('./routes');
+const { resourceNotFound } = require('./controller');
+
 let currentPort = process.env.PORT || 3000;
 
 const server = http.createServer((request, response) => {
@@ -20,7 +22,7 @@ const server = http.createServer((request, response) => {
         buffer += decoder.end();
         const currentRoute = (typeof routes.get[trimmedPath] !== 'undefined' && currMethod === "GET") ? routes.get[trimmedPath] :
             (typeof routes.post[trimmedPath] !== 'undefined' && currMethod === "POST") ? routes.post[trimmedPath] : 
-            routeHandlers['resourceNotFound'];
+            resourceNotFound;
 
         currentRoute(buffer, (statusCode, reqResponse) => {
             statusCode = (typeof statusCode === 'number') ? statusCode : 404;
