@@ -137,10 +137,14 @@ const handRuleNdata = (inData, callback) => {
 }
 
 routeHandlers.validateRule = (inData, callback) => {
-    inData = JSON.parse(inData);
+    try {
+        inData = JSON.parse(inData);
 
-    (typeof inData !== 'object') ? callback(400, responseMessage['invalidPayload']) : 
+        (typeof inData !== 'object') ? callback(400, responseMessage['invalidPayload']) : 
         handRuleNdata(inData, callback);
+    } catch (error) {
+        callback(400, { ...responseMessage['invalidPayload'], error_tips: "Check the input values" });
+    }
 }
 
 module.exports = routeHandlers;
