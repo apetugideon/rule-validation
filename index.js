@@ -2,6 +2,7 @@ const http = require('http');
 const serverUrl = require('url');
 const { StringDecoder } = require('string_decoder');
 const routes = require('./routes');
+let currentPort = process.env.PORT || 3000;
 
 const server = http.createServer((request, response) => {
     const { url, method } = request;
@@ -32,6 +33,6 @@ const server = http.createServer((request, response) => {
     })
 });
 
-server.listen(process.env.PORT || 3000, () => {
-    console.log("Listening on Port 3000");
+server.listen(currentPort, () => {
+    console.log("Listening on Port " + currentPort);
 });
