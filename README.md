@@ -1,6 +1,6 @@
 # Rule-validation API
 
-This API was created using nodejs v12.18.3 with no framework, with the endpoint ment for validating set of input rules.
+This API was created using nodejs v12.18.3 with no framework, with the endpoints for validating set of input rules.
 
 The API base url is located [here](https://app-rule-validation.herokuapp.com/) and the git repo is [here](https://github.com/apetugideon/rule-validation.git).
 
